@@ -43,6 +43,7 @@ long microsecondsToCentimeters(long microseconds) {
   return microseconds / 29 / 2;
 }
 
+// This callback func use for get the msg from mqtt.
 void callback(char* topic, byte* payload, unsigned int length) {
   String message = "";
 
@@ -56,7 +57,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(message);
 
   StaticJsonDocument<200> doc;
-  DeserializationError error = deserializeJson(doc, message);
+  DeserializationError error = deserializeJson(doc, message); // Convert string to json.
 
   if (error) {
     Serial.println("JSON parse failed");
